@@ -25,6 +25,11 @@ h1, h3, span{
 	font-weight: bold;
 	text-align: center;
 }
+h2{
+	font-weight: bold;
+    text-align: center;
+    font-size: 14px;    
+}
 
 h4{
     font-weight: bolder;

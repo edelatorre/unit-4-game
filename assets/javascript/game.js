@@ -17,29 +17,61 @@ $( document ).ready(function(){
 
     $('#randomNumber').text(randomComputer);
 
+    function reset(){
+        randomComputer = randomIntFromInterval(19, 120);
+        randomBlue = Math.floor(Math.random() * 12) + 1;
+        randomGreen = Math.floor(Math.random() * 12) + 1;    
+        randomRed = Math.floor(Math.random() * 12) + 1;
+        randomYellow = Math.floor(Math.random() * 12) + 1;
+        score = 0;
+        $('#finalTotal').text(score);
+        $('#randomNumber').text(randomComputer);
+
+        console.log('RandomComputer: '+ randomComputer);
+        console.log('randomBlue: '+randomBlue);
+        console.log('randomRed: '+randomRed);
+        console.log('randomGreen: '+randomGreen);
+        console.log('randomYellow: '+randomYellow);
+    }
+
     function randomIntFromInterval(min,max){
         return Math.floor(Math.random()*(max-min+1)+min);
     }
 
-    function addScore(randomColor){
+    function addScoreAndCheck(randomColor){
         score += randomColor;
         $('#finalTotal').text(score);
-    }
+
+        if(score === randomComputer){
+            alert('CONGRATS!! YOU HAVE WIN');
+            wins ++;
+            $('#numberWins').text(wins);
+            reset();
+
+        }
+
+        if(score > randomComputer ){
+            alert('SORRY!! YOU LOST THIS MATCH');
+            loses ++;
+            $('#numberLosses').text(loses);
+            reset();
+        }
+    };
 
     $("#one").on( "click", function(){
-        addScore(randomBlue);
+        addScoreAndCheck(randomBlue);
     });
     
     $("#two").on( "click", function(){
-        addScore(randomGreen);
+        addScoreAndCheck(randomGreen);
     }); 
 
     $("#three").on( "click", function(){
-        addScore(randomRed);
+        addScoreAndCheck(randomRed);
     });
     
     $("#four").on( "click", function(){
-        addScore(randomYellow);
+        addScoreAndCheck(randomYellow);
     });  
 
     console.log('score: '+score);
